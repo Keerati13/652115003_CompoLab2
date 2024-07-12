@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import EventCard from '@/components/EventCard.vue'
 import EventInfo from '@/components/EventInfo.vue'
-import Event from '@/types/Event'
+import type { Event } from '@/type'
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
+import EventService from '@/services/EventService'
 
 const events = ref<Event[]>(null)
 
 onMounted(() => {
-  axios
-  .get('https://my-json-server.typicode.com/Keerati13/jsonLab2CP/events')
+  EventService.getEvents()
+  // axios
+  // .get('https://my-json-server.typicode.com/Keerati13/jsonLab2CP/events')
   .then((response) => {
     events.value = response.data
   })
