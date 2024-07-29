@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import EventCard from '@/components/EventCard.vue'
 import EventInfo from '@/components/EventInfo.vue'
-import type { Event } from '@/type'
-import { ref, onMounted, computed } from 'vue'
+import { type Event } from '@/types'
+import { ref, onMounted, computed, watchEffect } from 'vue'
 // import axios from 'axios'
 import EventService from '@/services/EventService'
+import { error } from 'console'
 
-const events = ref<Event[]>(null)
+const events = ref<Event | null>(null)
 const props = defineProps({
   page: {
     type: Number,
@@ -16,12 +17,16 @@ const props = defineProps({
 const page = computed(() => props.page)
 
 onMounted(() => {
-  EventService.getEvents(2, page.value)
-    // axios
-    // .get('https://my-json-server.typicode.com/Keerati13/jsonLab2CP/events')
-    .then((response) => {
-      events.value = response.data
-    })
+  watchEffect(() => {
+    events.value = null
+    EventService.getEvents(2, page.value)
+      .then((response) => {
+        events.value = response.data
+      })
+      .catch((error) => {
+        console.error('There was an error!' , error)
+      })
+  })
 })
 </script>
 
