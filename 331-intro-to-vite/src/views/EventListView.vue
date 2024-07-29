@@ -7,21 +7,21 @@ import { ref, onMounted, computed } from 'vue'
 import EventService from '@/services/EventService'
 
 const events = ref<Event[]>(null)
-const props = defineProps ({
+const props = defineProps({
   page: {
     type: Number,
     required: true
   }
 })
-const page = computed (() => props.page)
+const page = computed(() => props.page)
 
 onMounted(() => {
   EventService.getEvents(2, page.value)
-  // axios
-  // .get('https://my-json-server.typicode.com/Keerati13/jsonLab2CP/events')
-  .then((response) => {
-    events.value = response.data
-  })
+    // axios
+    // .get('https://my-json-server.typicode.com/Keerati13/jsonLab2CP/events')
+    .then((response) => {
+      events.value = response.data
+    })
 })
 </script>
 
@@ -29,24 +29,26 @@ onMounted(() => {
   <h1>Events For Good</h1>
   <!-- new element -->
   <div class="home">
-  <div class="events">
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <div class="events">
+      <EventCard v-for="event in events" :key="event.id" :event="event" />
+    </div>
+    <div class="events-info">
+      <EventInfo v-for="event in events" :key="event.id" :event="event" />
+    </div>
   </div>
-  <div class="events-info">
-    <EventInfo v-for="event in events" :key="event.id" :event="event" />
-  </div>    
-  </div>
-
+  <RouterLink :to="{ name: 'event-list-view', query: { page: page - 1 } }" rel="prev" v-if="(page != 1)">Prev Page</RouterLink> |
+  <RouterLink :to="{ name: 'event-list-view', query: { page: page + 1 } }" rel="next">Next Page</RouterLink>
 </template>
 
 <style scoped>
-.home{
+.home {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.events, .event-info{
+.events,
+.event-info {
   display: flex;
   flex-direction: column;
   align-items: center;
