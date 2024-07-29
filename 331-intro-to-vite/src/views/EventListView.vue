@@ -2,14 +2,21 @@
 import EventCard from '@/components/EventCard.vue'
 import EventInfo from '@/components/EventInfo.vue'
 import type { Event } from '@/type'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 // import axios from 'axios'
 import EventService from '@/services/EventService'
 
 const events = ref<Event[]>(null)
+const props = defineProps ({
+  page: {
+    type: Number,
+    required: true
+  }
+})
+const page = computed (() => props.page)
 
 onMounted(() => {
-  EventService.getEvents()
+  EventService.getEvents(2, page.value)
   // axios
   // .get('https://my-json-server.typicode.com/Keerati13/jsonLab2CP/events')
   .then((response) => {
