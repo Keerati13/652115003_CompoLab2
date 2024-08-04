@@ -2,7 +2,7 @@
 import { ref, onMounted, defineProps } from 'vue'
 import { type Event } from '@/types'
 import EventService from '@/services/EventService';
-const events = ref<Event | null>(null)
+const event = ref<Event | null>(null)
 const props = defineProps ({
     id: {
         type: String,

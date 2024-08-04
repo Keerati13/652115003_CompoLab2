@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { type Event } from '@/types'
 import EventService from '@/services/EventService'
-import { RouterView } from 'vue-router';
+import { RouterLink, RouterView } from 'vue-router';
 
 const event = ref<Event | null>(null)
 const props = defineProps({
@@ -25,6 +25,10 @@ onMounted(() => {
   <div v-if="event">
     <h1>{{ event.title }}</h1>
     <nav>
+      <RouterLink :to="{ name: 'event-detail-view' }">Details</RouterLink>
+      |
+      <RouterLink :to="{ name: 'event-register-view' }">Register</RouterLink>
+      |
       <RouterLink :to="{ name: 'event-edit-view' }">Edit</RouterLink>
     </nav>
     <RouterView :event="event" />
