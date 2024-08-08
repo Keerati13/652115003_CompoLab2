@@ -13,7 +13,7 @@ export interface Student {
     id: number
     studentId: string
     name: string
-  }
+}
 export interface MessagesState {
     message: String
 }
