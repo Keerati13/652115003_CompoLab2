@@ -17,3 +17,7 @@ export interface Student {
 export interface MessagesState {
     message: String
 }
+
+export interface EventService {
+    event: Event | null
+}
