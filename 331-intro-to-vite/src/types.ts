@@ -14,3 +14,6 @@ export interface Student {
     studentId: string
     name: string
   }
+export interface MessagesState {
+    message: String
+}
