@@ -36,7 +36,7 @@ onMounted(() => {
   <h1>Events For Good</h1>
   <!-- new element -->
   <div class="home">
-    <div class="events">
+    <div class="flex flex-col items-center">
       <EventCard v-for="event in events" :key="event.id" :event="event" />
     </div>
     <div class="events-info">
@@ -62,7 +62,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 .home {
   display: flex;
   flex-direction: column;
@@ -92,4 +92,4 @@ onMounted(() => {
 #page-next {
   text-align: right;
 }
-</style>
+</style> -->
