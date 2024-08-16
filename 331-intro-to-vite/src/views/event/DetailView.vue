@@ -16,6 +16,7 @@ const { event } = toRefs(props)
   <div id="flashMessage" class="animate-fade" v-if="message">
     <h4>{{ message }}</h4>
   </div>
+  <h1>Deploy with Vercel</h1>
   <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
   <p>{{ event.description }}</p>
 </template>
