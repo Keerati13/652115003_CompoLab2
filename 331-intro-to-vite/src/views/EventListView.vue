@@ -5,11 +5,11 @@ import { type Event } from '@/types'
 import { ref, onMounted, computed, watchEffect } from 'vue'
 import { useRoute  } from 'vue-router'
 import EventService from '@/services/EventService'
-import { error } from 'console'
+// import { error } from 'console'
 
 const route = useRoute()
 
-const events = ref<Event | null>(null)
+const events = ref<Event[] | null>(null)
 const totalEvents = ref(0)
 const perPage = computed(() => parseInt(route.query.perPage as string) || 2)
 const page = computed(() => parseInt(route.query.page as string) || 1)
@@ -62,7 +62,7 @@ onMounted(() => {
   </div>
 </template>
 
-<!-- <style scoped>
+<style scoped>
 .home {
   display: flex;
   flex-direction: column;
@@ -70,11 +70,11 @@ onMounted(() => {
 }
 
 .events,
-.event-info {
+/* .event-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 .pagination {
   display: flex;
   width: 290px;
@@ -92,4 +92,4 @@ onMounted(() => {
 #page-next {
   text-align: right;
 }
-</style> -->
+</style>

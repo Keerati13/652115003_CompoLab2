@@ -18,6 +18,6 @@ export interface MessagesState {
     message: String
 }
 
-export interface EventService {
+export interface EventState {
     event: Event | null
 }
